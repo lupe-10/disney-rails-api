@@ -46,7 +46,7 @@ class Api::V1::CharactersController < BaseController
   end
 
   def character_params
-    params.require(:character).permit(:name, :age, :weight, :history, :character_in_movie_id, :character_in_serie_id)
+    params.require(:character).permit(:name, :age, :weight, :history)
   end
 end
 
