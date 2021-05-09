@@ -10,16 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_230604) do
+ActiveRecord::Schema.define(version: 2021_05_09_232537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "character_in_movies", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "movie_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_character_in_movies_on_character_id"
+    t.index ["movie_id"], name: "index_character_in_movies_on_movie_id"
+  end
+
+  create_table "character_in_series", force: :cascade do |t|
+    t.bigint "character_id"
+    t.bigint "serie_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_character_in_series_on_character_id"
+    t.index ["serie_id"], name: "index_character_in_series_on_serie_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
     t.string "weight"
     t.integer "age"
     t.string "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "title"
+    t.string "gender"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.string "title"
+    t.string "gender"
+    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
