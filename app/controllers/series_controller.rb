@@ -1,6 +1,7 @@
 class seriesController < BaseController
   before_action :set_character, only: %i[show create update delete]
-
+  acts_as_token_authentication_handler_for User, except: %i[ index show ]
+  
   def index
     @series = Serie.all
   end
