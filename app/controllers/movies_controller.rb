@@ -3,7 +3,10 @@ class MoviesController < BaseController
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
 
   def index
-    @movies = Movie.all
+    if params[:query].present?
+      @movies = Movie.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @movies = Movie.all
   end
 
   def show 

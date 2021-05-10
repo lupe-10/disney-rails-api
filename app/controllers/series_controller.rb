@@ -3,7 +3,10 @@ class seriesController < BaseController
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
   
   def index
-    @series = Serie.all
+    if params[:query].present?
+      @series = Serie.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @series = Serie.all
   end
 
   def show 

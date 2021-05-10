@@ -3,6 +3,9 @@ class Api::V1::CharactersController < BaseController
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
 
   def index
+    if params[:query].present?
+      @characters = Character.where("name @@ ?", "%#{params[:query]}%")
+    else
     @characters = Character.all
   end
 
