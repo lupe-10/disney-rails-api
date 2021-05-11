@@ -9,6 +9,11 @@ class MoviesController < BaseController
       @movies = Movie.all
   end
 
+  def sorted_movies
+    @movies_desc = Movie.order('created_at DESC').all
+    @movies_asc = Movie.order('created_at ASC').all
+  end
+  
   def show 
   end
 

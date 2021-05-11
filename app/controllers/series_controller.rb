@@ -9,6 +9,11 @@ class seriesController < BaseController
       @series = Serie.all
   end
 
+  def sorted_series
+    @series_desc = Serie.order('created_at DESC').all
+    @series_asc = Serie.order('created_at ASC').all
+  end
+
   def show 
   end
 

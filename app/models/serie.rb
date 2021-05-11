@@ -4,6 +4,8 @@ class Serie < ApplicationRecord
 
   validates :title, :rating, :gender, presence: true
 
+  include Filterable
+
   include PgSearch::Model
   multisearchable against: %i[name syllabus title history]
 end

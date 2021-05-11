@@ -5,6 +5,12 @@ class Character < ApplicationRecord
 
   validates :name, :weight, :age, :history, presence: true
 
+  include Filterable
+
   include PgSearch::Model
-  multisearchable against: %i[name syllabus title history]
+  pg_search_scope :participation, associated_against: {
+    movies: :title,
+    series: :title
+  }
+  multisearchable against: %i[name syllabus history]
 end

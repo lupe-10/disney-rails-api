@@ -4,6 +4,9 @@ class Movie < ApplicationRecord
 
   validates :title, :rating, :gender, presence: true
 
+  include Filterable
+
   include PgSearch::Model
-  multisearchable against: %i[name syllabus title history]
+  multisearchable against: %i[title syllabus]
+
 end
