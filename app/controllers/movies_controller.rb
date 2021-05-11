@@ -4,7 +4,7 @@ class MoviesController < BaseController
 
   def index
     if params[:query].present?
-      @movies = Movie.where("title ILIKE ?", "%#{params[:query]}%")
+      @movies = Movie.where("title @@ ?", "%#{params[:query]}%")
     else
       @movies = Movie.all
   end
@@ -13,7 +13,7 @@ class MoviesController < BaseController
     @movies_desc = Movie.order('created_at DESC').all
     @movies_asc = Movie.order('created_at ASC').all
   end
-  
+
   def show 
   end
 

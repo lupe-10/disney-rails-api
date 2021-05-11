@@ -9,6 +9,13 @@ class Api::V1::CharactersController < BaseController
     @characters = Character.all
   end
 
+  def filter_by
+    def index
+      @filter_result = Character.filter(params.slice(:name, :age, :weight,))
+      @character_in_movie = Character.where('user_id = ? and chatroom_id = ?', current_user.id, @event.chatroom.id)
+    end
+  end
+
   def show 
   end
 

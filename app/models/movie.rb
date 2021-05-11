@@ -7,6 +7,10 @@ class Movie < ApplicationRecord
   include Filterable
 
   include PgSearch::Model
-  multisearchable against: %i[title syllabus]
+  pg_search_scope :search_by_title_and_synopsis,
+  against: :title,
+  using: {
+    tsearch: { prefix: true } 
+  }
 
 end

@@ -1,1 +1,0 @@
-json.extract! character, :id, :name, :age, :weight, :history, :photo

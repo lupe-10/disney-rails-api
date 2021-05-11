@@ -4,7 +4,7 @@ class seriesController < BaseController
   
   def index
     if params[:query].present?
-      @series = Serie.where("title ILIKE ?", "%#{params[:query]}%")
+      @series = Serie.where("title @@ ?", "%#{params[:query]}%")
     else
       @series = Serie.all
   end
