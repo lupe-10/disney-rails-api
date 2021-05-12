@@ -5,15 +5,10 @@ class Api::V1::CharactersController < BaseController
   def index
     if params[:query].present?
       @characters = Character.where("name @@ ?", "%#{params[:query]}%")
+    elsif 
+      @charcacter.filter
     else
     @characters = Character.all
-  end
-
-  def filter_by
-    def index
-      @filter_result = Character.filter(params.slice(:name, :age, :weight,))
-      @character_in_movie = Character.where('user_id = ? and chatroom_id = ?', current_user.id, @event.chatroom.id)
-    end
   end
 
   def show 
@@ -47,17 +42,13 @@ class Api::V1::CharactersController < BaseController
 
   private
 
-  def render_error
-    render json: { errors: @character.errors.full_messages },
-                   status: :unprocessable_entity
-  end
 
   def set_character
     @character = Character.find(params[:id])
   end
 
   def character_params
-    params.require(:character).permit(:name, :age, :weight, :history)
+    params.require(:character).permit(:name, :age, :weight, :history, :photo)
   end
 end
 

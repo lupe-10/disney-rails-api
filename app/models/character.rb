@@ -7,14 +7,4 @@ class Character < ApplicationRecord
 
   include Filterable
 
-  include PgSearch::Model
-  pg_search_scope :global_search,
-    against: :name,
-    associated_against: {
-      movie: :title,
-      serie: :title
-    },
-    using: {
-      tsearch: { prefix: true }
-    }
 end

@@ -45,10 +45,6 @@ class MoviesController < BaseController
 
   private
 
-  def render_error
-    render json: { errors: @movie.errors.full_messages },
-                   status: :unprocessable_entity
-  end
 
   def set_character
     @movie = Movie.find(params[:id])

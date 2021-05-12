@@ -1,27 +1,16 @@
 class CharacterSerializer < ActiveModel::Serializer
-  attributes :id :name :age :weight :history :photo
+  attributes :id, :name, :age, :weight, :history, :photo
 
   has_many :movies
   has_many :series
 
-  def movies_list
-    @character.movies.map do |movie|
-      {
-        title: movie.title,
-        gender: movie.gender,
-        rating: movie.rating
-      }
-    end
+  def movies
+    ActiveModel::Serializer::CollectionSerializer
+      .new(object.movies, each_serializer: MovieSerializer)
   end
 
-  
-  def series_list
-    @character.series.map do |serie|
-      {
-        title: serie.title,
-        gender: serie.gender,
-        rating: serie.rating
-      }
-    end
+  def series
+    ActiveModel::Serializer::CollectionSerializer
+      .new(object.series, each_serializer: SerieSerializer)
   end
 end

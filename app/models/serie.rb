@@ -6,6 +6,4 @@ class Serie < ApplicationRecord
 
   include Filterable
 
-  include PgSearch::Model
-  multisearchable against: %i[name syllabus title history]
 end

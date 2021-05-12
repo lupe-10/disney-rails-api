@@ -9,11 +9,6 @@ class seriesController < BaseController
       @series = Serie.all
   end
 
-  def sorted_series
-    @series_desc = Serie.order('created_at DESC').all
-    @series_asc = Serie.order('created_at ASC').all
-  end
-
   def show 
   end
 
@@ -45,10 +40,6 @@ class seriesController < BaseController
 
   private
 
-  def render_error
-    render json: { errors: @serie.errors.full_messages },
-                   status: :unprocessable_entity
-  end
 
   def set_character
     @serie = Serie.find(params[:id])
