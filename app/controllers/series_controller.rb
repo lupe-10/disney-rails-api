@@ -5,6 +5,8 @@ class seriesController < BaseController
   def index
     if params[:query].present?
       @series = Serie.where("title @@ ?", "%#{params[:query]}%")
+    elsif 
+      filter(filtering_params)
     else
       @series = Serie.all
   end

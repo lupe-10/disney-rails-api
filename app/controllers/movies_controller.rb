@@ -5,6 +5,8 @@ class MoviesController < BaseController
   def index
     if params[:query].present?
       @movies = Movie.where("title @@ ?", "%#{params[:query]}%")
+    elsif 
+      filter(filtering_params)
     else
       @movies = Movie.all
   end

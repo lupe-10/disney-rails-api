@@ -6,7 +6,7 @@ class Api::V1::CharactersController < BaseController
     if params[:query].present?
       @characters = Character.where("name @@ ?", "%#{params[:query]}%")
     elsif 
-      @charcacter.filter
+      filter(filtering_params)
     else
     @characters = Character.all
   end
@@ -42,6 +42,9 @@ class Api::V1::CharactersController < BaseController
 
   private
 
+  def filtering_params(params)
+    params.slice(:name, :weight, :age, :title)
+  end
 
   def set_character
     @character = Character.find(params[:id])

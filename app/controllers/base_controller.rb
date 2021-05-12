@@ -9,7 +9,7 @@ class Api::V1::BaseController < ActionController::API
   end
 
   def render_error
-    render json: { errors: @character.errors.full_messages },
+    render json: { errors: object.errors.full_messages },
                    status: :unprocessable_entity
   end
 
