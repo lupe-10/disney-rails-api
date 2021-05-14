@@ -2,17 +2,14 @@ class CharactersController < ApplicationController
   before_action :set_character, only: %i[show create update delete]
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
 
-  # def index
-  #   if params[:query].present?
-  #     @characters = Character.where("name @@ ?", "%#{params[:query]}%")
-  #   elsif 
-  #     filter(filtering_params)
-  #   else
-  #   @characters = Character.all
-  # end
-
   def index
-    @characters = Character.all 
+    if params[:query].present?
+      @characters = Character.where("name @@ ?", "%#{params[:query]}%")
+    elsif
+      filter(filtering_params)
+    else
+    @characters = Character.all
+    end
   end
 
   def show 
