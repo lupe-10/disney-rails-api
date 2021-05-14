@@ -1,4 +1,4 @@
-class MoviesController < BaseController
+class MoviesController < ApplicationController
   before_action :set_character, only: %i[show create update delete]
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
 
@@ -9,6 +9,7 @@ class MoviesController < BaseController
       filter(filtering_params)
     else
       @movies = Movie.all
+    end
   end
 
   def sorted_movies

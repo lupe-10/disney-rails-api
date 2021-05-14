@@ -1,4 +1,4 @@
-class seriesController < BaseController
+class SeriesController < ApplicationController
   before_action :set_character, only: %i[show create update delete]
   acts_as_token_authentication_handler_for User, except: %i[ index show ]
   
@@ -9,6 +9,7 @@ class seriesController < BaseController
       filter(filtering_params)
     else
       @series = Serie.all
+    end
   end
 
   def show 

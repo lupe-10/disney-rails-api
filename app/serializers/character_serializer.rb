@@ -6,11 +6,11 @@ class CharacterSerializer < ActiveModel::Serializer
 
   def movies
     ActiveModel::Serializer::CollectionSerializer
-      .new(object.movies, each_serializer: MovieSerializer)
+     Movie.new(object.movies, each_serializer: MovieSerializer)
   end
 
   def series
     ActiveModel::Serializer::CollectionSerializer
-      .new(object.series, each_serializer: SerieSerializer)
+      Serie.new(object.series, each_serializer: SerieSerializer)
   end
 end
